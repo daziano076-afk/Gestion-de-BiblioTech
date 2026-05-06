@@ -85,6 +85,10 @@ const initialData = {
     demandes: []
 };
 
+if (!fs.existsSync(path.join(__dirname, 'data'))) {
+    fs.mkdirSync(path.join(__dirname, 'data'));
+}
+
 if (!fs.existsSync(dataFilePath)) {
     fs.writeFileSync(dataFilePath, JSON.stringify(initialData, null, 2));
     console.log('Fichier de donnees cree.');
