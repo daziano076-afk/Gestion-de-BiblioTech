@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>BiblioTech - Gestion de Bibliotheque</title>
+        <link rel="stylesheet" href="css/style.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
+    </head>
+    <body>
+        <!-- ========== PAGE ACCUEIL (visible par defaut) ========== -->
+        <div id="pageAccueil" class="page-accueil">
+            <nav class="navbar-accueil">
+                <div class="nav-container">
+                    <div class="nav-logo">
+                        <i class="fas fa-book-open"></i>
+                        <span>BiblioTech</span>
+                    </div>
+                    <div class="nav-links" id="navLinks">
+                        <a href="#accueil">Accueil</a>
+                        <a href="#catalogue-section">Catalogue</a>
+                        <a href="#apropos">A propos</a>
+                        <a href="#contact-section">Contact</a>
+                    </div>
+                    <div class="nav-actions">
+                        <button class="btn-nav" onclick="afficherConnexion()">
+                            <i class="fas fa-sign-in-alt"></i> Connexion
+                        </button>
+                        <button
+                            class="btn-nav btn-nav-primary"
+                            onclick="afficherInscription()"
+                        >
+                            <i class="fas fa-user-plus"></i> Inscription
+                        </button>
+                        <button
+                            class="hamburger"
+                            id="hamburger"
+                            onclick="toggleMobileMenu()"
+                        >
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- HERO -->
+            <section class="hero" id="accueil">
+                <div class="hero-bg">
+                    <img
+                        src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1920&h=1080&fit=crop"
+                        alt="Bibliotheque"
+                    />
+                    <div class="hero-overlay"></div>
+                </div>
+                <div class="hero-content">
+                    <span class="hero-badge">Votre bibliotheque numerique</span>
+                    <h1>Decouvrez, Empruntez, <br />Explorez le Savoir</h1>
+                    <p>
+                        BiblioTech met a votre disposition une collection
+                        soigneusement selectionnee d'ouvrages classiques et
+                        contemporains. Inscrivez-vous pour emprunter vos livres
+                        preferes.
+                    </p>
+                    <div class="hero-buttons">
+                        <button
+                            class="btn-hero"
+                            onclick="afficherInscription()"
+                        >
+                            <i class="fas fa-user-plus"></i> Creer un compte
+                        </button>
+                        <a
+                            href="#catalogue-section"
+                            class="btn-hero btn-hero-outline"
+                        >
+                            <i class="fas fa-book"></i> Voir le catalogue
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <span class="hero-stat-number" id="heroTotalLivres"
+                                >0</span
+                            >
+                            <span class="hero-stat-label">Livres</span>
+                        </div>
+                        <div class="hero-stat-divider"></div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-number" id="heroLivresDispo"
+                                >0</span
+                            >
+                            <span class="hero-stat-label">Disponibles</span>
+                        </div>
+                        <div class="hero-stat-divider"></div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-number" id="heroMembers"
+                                >0</span
+                            >
+                            <span class="hero-stat-label">Membres</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CATALOGUE APERCU -->
+            <section class="section-catalogue" id="catalogue-section">
+                <div class="section-container">
+                    <div class="section-header">
+                        <span class="section-tag">Notre collection</span>
+                        <h2>Catalogue des ouvrages</h2>
+                        <p>
+                            Parcourez notre selection de livres. Connectez-vous
+                            pour effectuer une demande d'emprunt.
+                        </p>
+                    </div>
+                    <div class="catalogue-grid" id="catalogueAccueil">
+                        <!-- rempli dynamiquement -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- A PROPOS -->
+            <section class="section-apropos" id="apropos">
+                <div class="section-container">
+                    <div class="apropos-grid">
+                        <div class="apropos-image">
+                            <img
+                                src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop"
+                                alt="Bibliotheque interieur"
+                            />
+                        </div>
+                        <div class="apropos-content">
+                            <span class="section-tag">A propos</span>
+                            <h2>
+                                Une bibliotheque moderne au service du savoir
+                            </h2>
+                            <p>
+                                BiblioTech est un systeme de gestion de
+                                bibliotheque concu pour faciliter l'acces aux
+                                livres. Notre plateforme permet aux membres de
+                                parcourir le catalogue, faire des demandes
+                                d'emprunt et suivre leurs lectures.
+                            </p>
+                            <div class="apropos-features">
+                                <div class="apropos-feature">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Recherche facile</h4>
+                                        <p>
+                                            Trouvez rapidement le livre qu'il
+                                            vous faut
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="apropos-feature">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Demande en ligne</h4>
+                                        <p>
+                                            Faites votre demande d'emprunt
+                                            depuis chez vous
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="apropos-feature">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-shield-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Suivi complet</h4>
+                                        <p>
+                                            Suivez vos emprunts et retours en
+                                            temps reel
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMMENT CA MARCHE -->
+            <section class="section-steps">
+                <div class="section-container">
+                    <div class="section-header">
+                        <span class="section-tag">Processus</span>
+                        <h2>Comment ca marche ?</h2>
+                        <p>Empruntez un livre en 4 etapes simples</p>
+                    </div>
+                    <div class="steps-grid">
+                        <div class="step-card">
+                            <div class="step-number">01</div>
+                            <div class="step-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <h3>Inscription</h3>
+                            <p>
+                                Creez votre compte gratuitement en quelques
+                                secondes
+                            </p>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-number">02</div>
+                            <div class="step-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3>Parcourir</h3>
+                            <p>
+                                Explorez le catalogue et trouvez le livre ideal
+                            </p>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-number">03</div>
+                            <div class="step-icon">
+                                <i class="fas fa-paper-plane"></i>
+                            </div>
+                            <h3>Demander</h3>
+                            <p>
+                                Envoyez votre demande d'emprunt a
+                                l'administrateur
+                            </p>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-number">04</div>
+                            <div class="step-icon">
+                                <i class="fas fa-book-reader"></i>
+                            </div>
+                            <h3>Lire</h3>
+                            <p>
+                                Recuperez votre livre une fois la demande
+                                approuvee
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACT -->
+            <section class="section-contact" id="contact-section">
+                <div class="section-container">
+                    <div class="section-header">
+                        <span class="section-tag">Contact</span>
+                        <h2>Besoin d'aide ?</h2>
+                        <p>
+                            N'hesitez pas a nous contacter pour toute question
+                        </p>
+                    </div>
+                    <div class="contact-grid">
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h4>Adresse</h4>
+                            <p>
+                                Avenue Jean-Paul II<br />01 BP 123 Cotonou,
+                                Bénin
+                            </p>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <h4>Telephone</h4>
+                            <p>+229 21 30 45 67</p>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h4>Email</h4>
+                            <p>contact@bibliotech.bj</p>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h4>Horaires</h4>
+                            <p>Lun-Ven : 9h - 19h<br />Sam : 10h - 17h</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="footer-accueil">
+                <div class="section-container">
+                    <div class="footer-grid">
+                        <div class="footer-brand">
+                            <div class="nav-logo">
+                                <i class="fas fa-book-open"></i>
+                                <span>BiblioTech</span>
+                            </div>
+                            <p>
+                                Votre bibliotheque numerique moderne. Gestion
+                                simplifiee des emprunts et retours de livres.
+                            </p>
+                        </div>
+                        <div class="footer-links">
+                            <h4>Navigation</h4>
+                            <a href="#accueil">Accueil</a>
+                            <a href="#catalogue-section">Catalogue</a>
+                            <a href="#apropos">A propos</a>
+                            <a href="#contact-section">Contact</a>
+                        </div>
+                        <div class="footer-links">
+                            <h4>Compte</h4>
+                            <a href="#" onclick="afficherConnexion()"
+                                >Connexion</a
+                            >
+                            <a href="#" onclick="afficherInscription()"
+                                >Inscription</a
+                            >
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>
+                            BiblioTech &mdash; Votre bibliotheque numerique
+                            &copy; 2026
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- ========== MODAL CONNEXION ========== -->
+        <div class="auth-overlay" id="authOverlay">
+            <div class="auth-modal">
+                <button class="auth-close" onclick="fermerAuth()">
+                    <i class="fas fa-times"></i>
+                </button>
+
+                <!-- FORMULAIRE CONNEXION -->
+                <div id="formConnexion" class="auth-form">
+                    <div class="auth-header">
+                        <div class="auth-logo">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h2>Connexion</h2>
+                        <p>Accedez a votre espace personnel</p>
+                    </div>
+                    <form onsubmit="connecter(event)">
+                        <div class="form-group">
+                            <label><i class="fas fa-envelope"></i> Email</label>
+                            <input
+                                type="email"
+                                id="loginEmail"
+                                placeholder="votre@email.com"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label
+                                ><i class="fas fa-lock"></i> Mot de passe</label
+                            >
+                            <input
+                                type="password"
+                                id="loginPassword"
+                                placeholder="Votre mot de passe"
+                                required
+                            />
+                        </div>
+                        <button type="submit" class="btn-auth">
+                            Se connecter
+                        </button>
+                    </form>
+                    <div class="auth-switch">
+                        Pas encore de compte ?
+                        <a href="#" onclick="basculerVersInscription()"
+                            >Creer un compte</a
+                        >
+                    </div>
+                </div>
+
+                <!-- FORMULAIRE INSCRIPTION -->
+                <div
+                    id="formInscription"
+                    class="auth-form"
+                    style="display: none"
+                >
+                    <div class="auth-header">
+                        <div class="auth-logo">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h2>Inscription</h2>
+                        <p>Rejoignez BiblioTech gratuitement</p>
+                    </div>
+                    <form onsubmit="inscrire(event)">
+                        <div class="form-group">
+                            <label
+                                ><i class="fas fa-user"></i> Nom complet</label
+                            >
+                            <input
+                                type="text"
+                                id="registerNom"
+                                placeholder="Jean Dupont"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-envelope"></i> Email</label>
+                            <input
+                                type="email"
+                                id="registerEmail"
+                                placeholder="votre@email.com"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label
+                                ><i class="fas fa-lock"></i> Mot de passe</label
+                            >
+                            <input
+                                type="password"
+                                id="registerPassword"
+                                placeholder="Minimum 4 caracteres"
+                                required
+                                minlength="4"
+                            />
+                        </div>
+                        <button type="submit" class="btn-auth">
+                            Creer mon compte
+                        </button>
+                    </form>
+                    <div class="auth-switch">
+                        Deja un compte ?
+                        <a href="#" onclick="basculerVersConnexion()"
+                            >Se connecter</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== ESPACE CONNECTE (sidebar + contenu) ========== -->
+        <div
+            id="espacePrincipal"
+            class="espace-principal"
+            style="display: none"
+        >
+            <nav class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <i class="fas fa-book-open logo-icon"></i>
+                    <span class="logo-text">BiblioTech</span>
+                </div>
+                <div class="sidebar-user" id="sidebarUser">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <div class="user-info">
+                        <span class="user-name" id="userName">Utilisateur</span>
+                        <span class="user-role" id="userRole">Membre</span>
+                    </div>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <!-- rempli dynamiquement selon le role -->
+                </ul>
+                <div class="sidebar-footer">
+                    <button class="btn-logout" onclick="deconnecter()">
+                        <i class="fas fa-sign-out-alt"></i> Deconnexion
+                    </button>
+                </div>
+            </nav>
+
+            <main class="main-content">
+                <header class="top-bar">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 id="pageTitle">Tableau de bord</h1>
+                    <div class="top-bar-right">
+                        <div class="date-display">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span id="currentDate"></span>
+                        </div>
+                        <div class="user-badge" id="topBarUser">
+                            <span id="topBarUserName">Utilisateur</span>
+                            <div class="user-avatar-sm" id="topBarAvatar">
+                                U
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="content-area" id="contentArea"></div>
+            </main>
+        </div>
+
+        <!-- ========== MODAL GENERIQUE ========== -->
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal" id="modal">
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2 id="modalTitle">Titre</h2>
+                <div id="modalBody"></div>
+            </div>
+        </div>
+
+        <!-- ========== TOAST ========== -->
+        <div class="toast" id="toast">
+            <i class="toast-icon"></i>
+            <span class="toast-message" id="toastMessage"></span>
+        </div>
+
+        <script src="js/app.js"></script>
+    </body>
+</html>

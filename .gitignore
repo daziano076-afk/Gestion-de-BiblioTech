@@ -1,0 +1,13 @@
+# Dépendances Node.js (installées via npm install)
+node_modules/
+
+# Fichier de données (généré automatiquement au premier lancement)
+data/bibliotheque.json
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
